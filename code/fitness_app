@@ -1,9 +1,9 @@
 LLD Fitness tracker
 
 Requirements :
-User onboarding (name, email, height, weight, fat percent, muscle percent, target weight, fat percent)
-Metrics (steps, calories, workout time, pulse) stored and can be queried using service (latest, time period)
-Target reminders (too low, close to daily target)
+1. User onboarding (name, email, height, weight, fat percent, muscle percent, target weight, fat percent)
+2. Metrics (steps, calories, workout time, pulse) stored and can be queried using service (latest, time period)
+3. Target reminders (too low, close to daily target)
 
 class User{
 	private String id, name, email;
@@ -12,8 +12,8 @@ class User{
 
 class MetricsService{
 	Double public getLatestValue(Metric metric){
-  return DatabaseLayer.getLatestMetric(metric);
-}
+  		return DatabaseLayer.getLatestMetric(metric);
+	}
 	Double public getAggregationForRange(Metric metric, DateTime startTime, DateTime endTime, aggregationStrategy);
 	List<Pair<Double, DateTime>> public getValuesInRange(Metric metric, DateTime startTime, DateTime endTime);
 }
@@ -32,9 +32,14 @@ enum Metric{
 	}
 }
 
+class Goals{
+	String userId;
+	Metric metric;
+	Double targetMetricValue, dailyTargetMetricValue;
+
+
 class DatabaseObjectFactory{
-	private static Map<Metric, DatabaseClass> MetricMap = new HashMap();
-	
+	private static Map<Metric, DatabaseClass> MetricMap = new HashMap();	
 }
 class DatabaseLayer{
 	public static Double getLatestMetricValue(Metric metric){
